@@ -7,8 +7,9 @@ namespace TaskManagerAPI.Application.UseCases.CreateTask
     public class CreateTaskUseCase
     {
         public ResponseTaskJson execute(RequestTaskJson request)
-        {
 
+        {
+            
                 var newTask = new ResponseTaskJson
                 {
                     Id = Guid.NewGuid().ToString(),

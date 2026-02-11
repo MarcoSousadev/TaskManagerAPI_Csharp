@@ -68,17 +68,27 @@ namespace TaskManager.API.Controllers
         [ProducesResponseType(typeof(ResponseErrorJson),StatusCodes.Status404NotFound)]
         public IActionResult GetTaskById([FromRoute] string id)
         {
-           var useCase = new GetTaskByIdUseCase();
 
-           var response = useCase.execute(id);
-
-           if(response == null)
+            try 
             {
-                return NotFound();
-                
+                var useCase = new GetTaskByIdUseCase();
+
+                var response = useCase.execute(id);
+
+                return Ok(response);
+
             }
 
-            return Ok(response);
+            catch (Exception e) 
+            {
+                return NotFound(e.Message);
+            
+            }
+
+          
+           
+
+          
         }
 
         [HttpPut]
@@ -90,17 +100,22 @@ namespace TaskManager.API.Controllers
 
         public IActionResult UpdateTaskById([FromRoute] string id, [FromBody] RequestTaskJson request)
         {
-            var useCase = new UpdateTaskByIdUseCase();
 
-            if(id == null) 
+            try 
             {
+                var useCase = new UpdateTaskByIdUseCase();
 
-                return BadRequest();
+                useCase.Execute(id, request);
+
+                return Ok();
             }
 
-            useCase.Execute(id, request);
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
 
-            return Ok();
+            }   
+           
         }
 
         [HttpDelete]
@@ -110,13 +125,18 @@ namespace TaskManager.API.Controllers
         public IActionResult DeleteById([FromRoute] string id)
         {
 
-            var useCase = new DeleteTaskUseCase();
+            try 
+            {
+                var useCase = new DeleteTaskUseCase();
+                useCase.Execute(id);
+                return Ok();
+            }
 
-            if(id == null) { return BadRequest(); }
+            catch (Exception e) {
+                return BadRequest(e.Message);
+            }
 
-            useCase.Execute(id);
-
-            return Ok();
+            
         }
     }
 
