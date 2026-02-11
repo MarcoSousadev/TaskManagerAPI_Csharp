@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerAPI.Communication.Enums
 {
-    public enum TaskStatus
+    public enum TaskStatusEnum
     {
         peding = 0,
         inProgress = 1,

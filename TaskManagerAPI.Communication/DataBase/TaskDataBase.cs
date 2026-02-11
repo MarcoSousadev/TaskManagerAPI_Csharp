@@ -1,9 +1,9 @@
-﻿using TaskManagerAPI.Communication.Responses.Task;
+﻿using TaskManagerAPI.Communication.Responses;
 
 namespace TaskManagerAPI.Communication.DataBase
 {
     public class TaskDataBase
     {
-         public static List<ResponseCreatedTaskJson> Task { get; set; } = new List<ResponseCreatedTaskJson>();
+         public static List<ResponseTaskJson> Task { get; set; } = new List<ResponseTaskJson>();
     }
 }

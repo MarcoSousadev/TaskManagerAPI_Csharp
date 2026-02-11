@@ -10,4 +10,8 @@
     <ProjectReference Include="..\TaskManagerAPI.Communication\TaskManagerAPI.Communication.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\GetAllTasks\" />
+  </ItemGroup>
+
 </Project>

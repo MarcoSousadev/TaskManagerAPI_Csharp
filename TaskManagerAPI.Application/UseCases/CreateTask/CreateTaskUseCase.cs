@@ -1,20 +1,20 @@
 ﻿using TaskManagerAPI.Communication.DataBase;
-using TaskManagerAPI.Communication.Requests.Task;
-using TaskManagerAPI.Communication.Responses.Task;
+using TaskManagerAPI.Communication.Requests;
+using TaskManagerAPI.Communication.Responses;
 
 namespace TaskManagerAPI.Application.UseCases.CreateTask
 {
     public class CreateTaskUseCase
     {
-        public ResponseCreatedTaskJson execute(RequestCreateTaskJson request)
+        public ResponseTaskJson execute(RequestTaskJson request)
         {
 
-                var newTask = new ResponseCreatedTaskJson
+                var newTask = new ResponseTaskJson
                 {
                     Id = Guid.NewGuid().ToString(),
                     Name = request.Name,
                     Description = request.Description,
-                    DueDate = request.DueDate,
+                    DueDate = request.DueDate > DateTime.Today ? request.DueDate : throw new Exception("Not allowed past Date") ,
                     Priority = request.Priority,
                     Status = request.Status,
                 };
